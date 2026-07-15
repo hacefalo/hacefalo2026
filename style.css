@@ -543,7 +543,9 @@ button, input { font: inherit; color: inherit; }
   /* Da telefono le scritte sono vicine tra loro: qui respirano di più */
   .hero__content { padding-block: 5.5rem 7rem; }
   .hero__content .eyebrow { margin-bottom: 1.6rem; }
-  .hero__title { margin-bottom: 1.9rem; }
+  /* Da telefono il titolo va a capo ("HACE" / "FALÒ 2026"): con l'interlinea
+     stretta del desktop le due righe si toccano. Qui respirano. */
+  .hero__title { line-height: 1.1; margin-bottom: 1.9rem; }
   .hero__sub { margin-bottom: 3rem; }
   .countdown { margin-bottom: 3rem; }
 
