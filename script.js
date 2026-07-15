@@ -202,7 +202,48 @@ againBtn.addEventListener("click", () => {
 });
 
 /* ---------------------------------------------------------
-   7) Braci nella hero (canvas leggero)
+   7) Countdown
+   L'orario è fissato all'ora italiana (+02:00 in agosto):
+   così è giusto anche per chi apre il sito da un altro fuso.
+   --------------------------------------------------------- */
+(function countdown() {
+  const EVENTO = new Date("2026-08-14T21:00:00+02:00").getTime();
+  const box = document.getElementById("countdown");
+  if (!box) return;
+
+  const campi = {
+    g: document.getElementById("cd-g"),
+    o: document.getElementById("cd-o"),
+    m: document.getElementById("cd-m"),
+    s: document.getElementById("cd-s")
+  };
+  const due = (n) => String(n).padStart(2, "0");
+  let raf;
+
+  function aggiorna() {
+    const diff = EVENTO - Date.now();
+
+    if (diff <= 0) {
+      // Il falò è acceso: il conto alla rovescia non serve più
+      box.className = "countdown--ora";
+      box.textContent = "È stanotte. Ci vediamo in spiaggia.";
+      clearInterval(raf);
+      return;
+    }
+
+    const sec = Math.floor(diff / 1000);
+    campi.g.textContent = Math.floor(sec / 86400);
+    campi.o.textContent = due(Math.floor(sec / 3600) % 24);
+    campi.m.textContent = due(Math.floor(sec / 60) % 60);
+    campi.s.textContent = due(sec % 60);
+  }
+
+  aggiorna();
+  raf = setInterval(aggiorna, 1000);
+})();
+
+/* ---------------------------------------------------------
+   8) Braci nella hero (canvas leggero)
    --------------------------------------------------------- */
 (function embers() {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
