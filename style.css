@@ -177,30 +177,50 @@ button, input { font: inherit; color: inherit; }
   0%, 100% { background-position: 0% 50%; }
   50%      { background-position: 100% 50%; }
 }
-/* Data e luogo: badge su fondo scuro, stacca dal video a ogni fotogramma */
-.eyebrow--hero {
-  display: inline-block;
-  font-weight: 700;
-  font-size: clamp(.78rem, 1.9vw, .95rem);
-  letter-spacing: .14em;
-  color: #B9F5EE;
-  margin-bottom: .75rem;
-  padding: .5rem .95rem;
-  border: 1px solid rgba(127, 216, 208, .38);
-  border-radius: 100px;
-  background: rgba(5, 13, 20, .58);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  text-shadow: none;
+.hero__sub {
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  color: var(--testo-soft);
+  margin-bottom: 2.2rem;
+  max-width: 32ch;
 }
 
-.hero__sub {
-  font-size: clamp(1.2rem, 2.8vw, 1.65rem);
-  font-weight: 500;
+/* Countdown: stesse regole del biglietto — numeri grossi, etichette in mono */
+.countdown {
+  display: flex;
+  gap: clamp(1.1rem, 4vw, 2.1rem);
+  margin: 0 0 2.2rem;
+}
+.cd__unit { display: flex; flex-direction: column; }
+.cd__num {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 6vw, 3.1rem);
+  line-height: 1;
+  letter-spacing: -.03em;
   color: var(--testo);
-  margin-bottom: 2.4rem;
-  max-width: 24ch;
-  letter-spacing: -.005em;
+  font-variant-numeric: tabular-nums;   /* i secondi non fanno ballare il testo */
+}
+/* I giorni sono il numero che conta: prendono il fuoco */
+.countdown .cd__unit:first-child .cd__num {
+  background: linear-gradient(100deg, var(--brace), var(--fiamma));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.cd__lab {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--schiuma);
+  margin-top: .45rem;
+}
+/* Quando l'attesa è finita */
+.countdown--ora {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  letter-spacing: -.02em;
+  background: linear-gradient(100deg, var(--brace), var(--fiamma));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
 .hero__scroll {
@@ -232,6 +252,7 @@ button, input { font: inherit; color: inherit; }
 .hero__content .reveal:nth-child(2) { animation-delay: .20s; }
 .hero__content .reveal:nth-child(3) { animation-delay: .34s; }
 .hero__content .reveal:nth-child(4) { animation-delay: .46s; }
+.hero__content .reveal:nth-child(5) { animation-delay: .58s; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 
 /* =========================================================
