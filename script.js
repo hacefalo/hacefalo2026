@@ -2,6 +2,10 @@
    HACE FALÒ 2026 — script.js
    ========================================================= */
 
+// Serve a capire quale versione del file è davvero online:
+// aprendo la Console del browser deve comparire questa riga.
+console.log("HACE FALÒ 2026 — script.js v3 (hero centrata)");
+
 /* ---------------------------------------------------------
    1) CONFIGURAZIONE — modifica SOLO questo blocco
    --------------------------------------------------------- */
