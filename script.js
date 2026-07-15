@@ -7,7 +7,7 @@
    --------------------------------------------------------- */
 const CONFIG = {
   // URL del Web App di Google Apps Script (finisce con /exec)
-  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwpJxpLtiYpjPDjiG4-XyXF64KmsJhkemlYN2_gh1Cv__tptJ70aNI-TvyvxZLYmoo/exec",
+  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx6kpMEKAJvZbS-vEcynt-HVKUaILGM3bC6LT6JQBcpe292SD3v82DZQRGpqqH3Kt4B/exec",
 
   // Dati PayPal
   PAYPAL_LINK: "https://paypal.me/MNasci363",
