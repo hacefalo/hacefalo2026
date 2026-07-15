@@ -160,7 +160,7 @@ button, input { font: inherit; color: inherit; }
   font-size: clamp(3rem, 13vw, 8.5rem);
   line-height: .88;
   letter-spacing: -.035em;
-  margin: .5rem 0 .9rem;
+  margin: 0 0 clamp(1.3rem, 3.2vw, 1.6rem);
   text-wrap: balance;
   /* Il testo con gradiente è trasparente: serve drop-shadow, non text-shadow */
   text-shadow: none;
@@ -186,13 +186,14 @@ button, input { font: inherit; color: inherit; }
   letter-spacing: .16em;
   color: #A9F2EA;
   text-shadow: 0 2px 14px rgba(5, 13, 20, .95), 0 1px 4px rgba(5, 13, 20, .8);
+  margin: 0 0 clamp(1.1rem, 3vw, 1.4rem);
 }
 
 .hero__sub {
   font-size: clamp(1.15rem, 2.5vw, 1.55rem);
   font-weight: 500;
   color: rgba(243, 238, 228, .92);
-  margin: 0 auto 2.2rem;
+  margin: 0 auto clamp(2.3rem, 5vw, 2.6rem);
   max-width: 30ch;
   text-shadow: 0 2px 16px rgba(5, 13, 20, .9), 0 1px 4px rgba(5, 13, 20, .7);
 }
@@ -202,7 +203,7 @@ button, input { font: inherit; color: inherit; }
   display: flex;
   justify-content: center;
   gap: clamp(1.1rem, 4vw, 2.1rem);
-  margin: 0 0 2.2rem;
+  margin: 0 0 clamp(2.3rem, 5vw, 2.6rem);
 }
 .cd__unit { display: flex; flex-direction: column; }
 .cd__num {
@@ -539,12 +540,18 @@ button, input { font: inherit; color: inherit; }
    RESPONSIVE
    ========================================================= */
 @media (max-width: 620px) {
+  /* Da telefono le scritte sono vicine tra loro: qui respirano di più */
+  .hero__content { padding-block: 5.5rem 7rem; }
+  .hero__content .eyebrow { margin-bottom: 1.6rem; }
+  .hero__title { margin-bottom: 1.9rem; }
+  .hero__sub { margin-bottom: 3rem; }
+  .countdown { margin-bottom: 3rem; }
+
   .ticket__row { grid-template-columns: 1fr; }
   .ticket__row .cell + .cell {
     border-left: 0;
     border-top: 1px solid var(--linea);
   }
-  .hero__content { padding-block: 5rem 7rem; }
   .hero__scroll { display: none; }
 }
 
