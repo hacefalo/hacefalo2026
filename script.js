@@ -4,7 +4,7 @@
 
 // Serve a capire quale versione del file è davvero online:
 // aprendo la Console del browser deve comparire questa riga.
-console.log("HACE FALÒ 2026 — script.js v6 (video nuovo)");
+console.log("HACE FALÒ 2026 — script.js v7 (prezzo 15, ore 22, bonifico istantaneo)");
 
 /* ---------------------------------------------------------
    1) CONFIGURAZIONE — modifica SOLO questo blocco
@@ -20,11 +20,10 @@ const CONFIG = {
   // Vengono inviati solo nella mail di conferma (vedi Codice.gs),
   // così non restano pubblici nel sorgente della pagina.
 
-  QUOTA: "€20",
+  QUOTA: "€15",
 
-  // Scadenze pagamento
-  SCADENZA: "12 agosto 2026",
-  SCADENZA_CONTANTI: "10 agosto 2026"
+  // Scadenza pagamento: uguale per tutti i metodi, contanti compresi
+  SCADENZA: "12 agosto 2026"
 };
 
 /* ---------------------------------------------------------
@@ -35,8 +34,8 @@ const PAY_DETAILS = {
     <p><strong>PayPal</strong> — invia ${CONFIG.QUOTA} a:</p>
     <p><a href="${CONFIG.PAYPAL_LINK}" target="_blank" rel="noopener">${CONFIG.PAYPAL_LINK}</a></p>`,
 
-  "Bonifico bancario": () => `
-    <p><strong>Bonifico bancario</strong> — ${CONFIG.QUOTA}</p>
+  "Bonifico istantaneo": () => `
+    <p><strong>Bonifico istantaneo</strong> — ${CONFIG.QUOTA}</p>
     <p>Intestatario, IBAN e causale arrivano nella mail di conferma, subito dopo la prenotazione.</p>`,
 
   "Contanti": () => `
@@ -60,6 +59,8 @@ const againBtn  = document.getElementById("again");
 form.addEventListener("change", (e) => {
   if (e.target.name !== "pagamento") return;
   const render = PAY_DETAILS[e.target.value];
+  paybox.innerHTML = "";           // pulizia esplicita: mai testo del metodo precedente
+  paybox.hidden = true;
   if (!render) return;
   paybox.innerHTML = render();
   paybox.hidden = false;
@@ -211,7 +212,7 @@ againBtn.addEventListener("click", () => {
    così è giusto anche per chi apre il sito da un altro fuso.
    --------------------------------------------------------- */
 (function countdown() {
-  const EVENTO = new Date("2026-08-14T21:00:00+02:00").getTime();
+  const EVENTO = new Date("2026-08-14T22:00:00+02:00").getTime();
   const box = document.getElementById("countdown");
   if (!box) return;
 
