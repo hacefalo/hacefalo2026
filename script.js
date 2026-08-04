@@ -4,7 +4,7 @@
 
 // Serve a capire quale versione del file è davvero online:
 // aprendo la Console del browser deve comparire questa riga.
-console.log("HACE FALÒ 2026 — script.js v7 (prezzo 15, ore 22, bonifico istantaneo)");
+console.log("HACE FALÒ 2026 — script.js v8 (niente riquadro sotto i pagamenti)");
 
 /* ---------------------------------------------------------
    1) CONFIGURAZIONE — modifica SOLO questo blocco
@@ -27,26 +27,9 @@ const CONFIG = {
 };
 
 /* ---------------------------------------------------------
-   2) Dettagli pagamento mostrati sotto le opzioni
-   --------------------------------------------------------- */
-const PAY_DETAILS = {
-  "PayPal": () => `
-    <p><strong>PayPal</strong> — invia ${CONFIG.QUOTA} a:</p>
-    <p><a href="${CONFIG.PAYPAL_LINK}" target="_blank" rel="noopener">${CONFIG.PAYPAL_LINK}</a></p>`,
-
-  "Bonifico istantaneo": () => `
-    <p><strong>Bonifico istantaneo</strong> — ${CONFIG.QUOTA}</p>
-    <p>Intestatario, IBAN e causale arrivano nella mail di conferma, subito dopo la prenotazione.</p>`,
-
-  "Contanti": () => `
-    <p><strong>Contanti</strong> — ${CONFIG.QUOTA} da consegnare a mano in spiaggia.</p>`
-};
-
-/* ---------------------------------------------------------
-   3) Elementi
+   2) Elementi
    --------------------------------------------------------- */
 const form      = document.getElementById("form");
-const paybox    = document.getElementById("paybox");
 const submitBtn = document.getElementById("submit");
 const formError = document.getElementById("formError");
 const done      = document.getElementById("done");
@@ -54,21 +37,17 @@ const doneNote  = document.getElementById("doneNote");
 const againBtn  = document.getElementById("again");
 
 /* ---------------------------------------------------------
-   4) Dettagli pagamento dinamici
+   3) Scelta del metodo di pagamento: solo pulizia dell'errore.
+   Nessun dettaglio compare sotto le opzioni: i dati per pagare
+   (link PayPal, IBAN) arrivano nella mail di conferma.
    --------------------------------------------------------- */
 form.addEventListener("change", (e) => {
   if (e.target.name !== "pagamento") return;
-  const render = PAY_DETAILS[e.target.value];
-  paybox.innerHTML = "";           // pulizia esplicita: mai testo del metodo precedente
-  paybox.hidden = true;
-  if (!render) return;
-  paybox.innerHTML = render();
-  paybox.hidden = false;
   clearError("pagamento");
 });
 
 /* ---------------------------------------------------------
-   5) Validazione
+   4) Validazione
    --------------------------------------------------------- */
 const RULES = {
   nome:     (v) => v.trim().length >= 2 || "Scrivi il tuo nome.",
@@ -113,7 +92,7 @@ function validate(data) {
 }
 
 /* ---------------------------------------------------------
-   6) Invio
+   5) Invio
    --------------------------------------------------------- */
 const TIMEOUT_MS = 20000;   // oltre 20 secondi consideriamo la richiesta persa
 let invioInCorso = false;
@@ -198,8 +177,6 @@ function showDone(data) {
 
 againBtn.addEventListener("click", () => {
   form.reset();
-  paybox.hidden = true;
-  paybox.innerHTML = "";
   setLoading(false);
   done.hidden = true;
   form.hidden = false;
@@ -207,7 +184,7 @@ againBtn.addEventListener("click", () => {
 });
 
 /* ---------------------------------------------------------
-   7) Countdown
+   6) Countdown
    L'orario è fissato all'ora italiana (+02:00 in agosto):
    così è giusto anche per chi apre il sito da un altro fuso.
    --------------------------------------------------------- */
@@ -248,7 +225,7 @@ againBtn.addEventListener("click", () => {
 })();
 
 /* ---------------------------------------------------------
-   8) Braci nella hero (canvas leggero)
+   7) Braci nella hero (canvas leggero)
    --------------------------------------------------------- */
 (function embers() {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
