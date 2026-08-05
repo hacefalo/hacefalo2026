@@ -4,7 +4,7 @@
 
 // Serve a capire quale versione del file è davvero online:
 // aprendo la Console del browser deve comparire questa riga.
-console.log("HACE FALÒ 2026 — script.js v9 (pacchetto pulito)");
+console.log("HACE FALÒ 2026 — script.js v10 (luogo con link maps)");
 
 /* ---------------------------------------------------------
    1) CONFIGURAZIONE — modifica SOLO questo blocco

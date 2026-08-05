@@ -316,6 +316,23 @@ button, input { font: inherit; color: inherit; }
 }
 .cell__note { font-size: .84rem; color: var(--testo-soft); margin-top: .25rem; }
 
+/* Luogo: link a Google Maps. Stesso stile del testo, con una sottolineatura
+   leggera che si accende al passaggio, così resta un valore del biglietto
+   e non un link qualsiasi. */
+.cell__link {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(127, 216, 208, .4);
+  transition: text-decoration-color .18s ease, color .18s ease;
+}
+.cell__link:hover,
+.cell__link:focus-visible {
+  color: var(--schiuma);
+  text-decoration-color: var(--schiuma);
+}
+
 /* Cosa comprende la quota */
 .incluso__title {
   font-family: var(--mono);
